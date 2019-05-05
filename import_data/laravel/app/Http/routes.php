@@ -50,6 +50,6 @@ Route::post ( '/editdata', function (Request $request) {
 	}
 } );
 Route::post ( '/deletedata', function (Request $request) {
-	Data::find ( $request->id )->delete ();
-	return response ()->json ();
+	Userdata::find( $request->id )->delete($request->all());
+	return response()->json();
 } );
