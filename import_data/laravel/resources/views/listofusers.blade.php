@@ -91,7 +91,7 @@
 					</form>
 					<div class="deleteContent">
 						Are you Sure you want to delete <span class="dname"></span> ? <span
-							class="hidden did"></span>
+							class="hidden id"></span>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn actionBtn" data-dismiss="modal">
@@ -140,7 +140,7 @@
         $('.deleteContent').show();
         $('.form-horizontal').hide();
         var stuff = $(this).data('info').split(',');
-        $('.did').text(stuff[0]);
+        $('.id').text(stuff[0]);
         $('.dname').html(stuff[1] +" "+stuff[2]);
         $('#myModal').modal('show');
     });
@@ -179,14 +179,16 @@
                         data.id + "</td><td>" + data.name +
                         "</td><td>" + data.dob + "</td><td>" + data.email + "</td><td>" +
                           "</td><td><button class='edit-modal btn btn-info' data-info='" + data.id+","+data.name+","+data.dob+","+data.email+"'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal btn btn-danger' data-info='" + data.id+","+data.name+","+data.dob+","+data.email+"' ><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
-            	 }}
+            	}
+				window.location.href = window.location.href;
+			}
         });
     });
 	
 	$('.modal-footer').on('click', '.delete', function() {
         $.ajax({
             type: 'post',
-            url: '/import_data/laravel/public/deleteItem',
+            url: '/import_data/laravel/public/deletedata',
             data: {
                 '_token': "{{ csrf_token() }}",
                 'id': $('.id').text()
